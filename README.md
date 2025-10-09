@@ -3,7 +3,7 @@
 [![Go Version](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/binadel/jsonw)](https://goreportcard.com/report/github.com/binadel/jsonw)
-![CI](https://github.com/binadel/jsonw/actions/workflows/jsonw.yml/badge.svg)
+![CI](https://github.com/binadel/jsonw/actions/workflows/test.yml/badge.svg)
 
 A lightweight, high-performance Go library for manually building JSON objects and arrays.
 
