@@ -1,8 +1,6 @@
 package jsonw
 
-import (
-	"github.com/mailru/easyjson/jwriter"
-)
+import "github.com/mailru/easyjson/jwriter"
 
 // ArrayWriter provides a low-level JSON array builder using easyjson.
 // It supports appending values of different types, including nested arrays and objects.
