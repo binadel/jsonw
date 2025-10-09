@@ -2,7 +2,7 @@ package jsonw
 
 import "github.com/mailru/easyjson/jwriter"
 
-// ObjectWriter provides a low-level JSON object builder using easyjson.
+// ObjectWriter provides a JSON object builder used for manually writing objects.
 // It supports writing fields of different types, including nested objects and arrays.
 type ObjectWriter struct {
 	writer     *jwriter.Writer
@@ -72,7 +72,7 @@ func (w *ObjectWriter) StringField(name, value string) {
 	w.needsComma = true
 }
 
-// NumberField writes a raw number (as string) field to the object.
+// NumberField writes a number field to the object.
 func (w *ObjectWriter) NumberField(name, value string) {
 	if w.needsComma {
 		w.writer.RawByte(comma)
@@ -86,7 +86,7 @@ func (w *ObjectWriter) NumberField(name, value string) {
 	w.needsComma = true
 }
 
-// IntegerField writes an int64 field to the object.
+// IntegerField writes an integer field to the object.
 func (w *ObjectWriter) IntegerField(name string, value int64) {
 	if w.needsComma {
 		w.writer.RawByte(comma)
@@ -100,7 +100,7 @@ func (w *ObjectWriter) IntegerField(name string, value int64) {
 	w.needsComma = true
 }
 
-// FloatField writes a float64 field to the object.
+// FloatField writes a float field to the object.
 func (w *ObjectWriter) FloatField(name string, value float64) {
 	if w.needsComma {
 		w.writer.RawByte(comma)

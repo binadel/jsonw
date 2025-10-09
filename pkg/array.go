@@ -2,7 +2,7 @@ package jsonw
 
 import "github.com/mailru/easyjson/jwriter"
 
-// ArrayWriter provides a low-level JSON array builder using easyjson.
+// ArrayWriter provides a JSON array builder used for manually writing arrays.
 // It supports appending values of different types, including nested arrays and objects.
 type ArrayWriter struct {
 	writer     *jwriter.Writer
@@ -61,7 +61,7 @@ func (w *ArrayWriter) StringValue(value string) {
 	w.needsComma = true
 }
 
-// NumberValue appends a raw number (as string) to the array.
+// NumberValue appends a number value to the array.
 func (w *ArrayWriter) NumberValue(value string) {
 	if w.needsComma {
 		w.writer.RawByte(comma)
@@ -72,7 +72,7 @@ func (w *ArrayWriter) NumberValue(value string) {
 	w.needsComma = true
 }
 
-// IntegerValue appends an int64 value to the array.
+// IntegerValue appends an integer value to the array.
 func (w *ArrayWriter) IntegerValue(value int64) {
 	if w.needsComma {
 		w.writer.RawByte(comma)
@@ -83,7 +83,7 @@ func (w *ArrayWriter) IntegerValue(value int64) {
 	w.needsComma = true
 }
 
-// FloatValue appends a float64 value to the array.
+// FloatValue appends a float value to the array.
 func (w *ArrayWriter) FloatValue(value float64) {
 	if w.needsComma {
 		w.writer.RawByte(comma)

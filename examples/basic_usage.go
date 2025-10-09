@@ -74,13 +74,13 @@ func main() {
 
 	// Example 5: Nested structures
 	fmt.Println("=== Nested Structures ===")
-	complex := jsonw.NewObjectWriter(nil)
-	complex.Open()
-	complex.StringField("name", "Bob")
-	complex.IntegerField("id", 123)
+	complexObj := jsonw.NewObjectWriter(nil)
+	complexObj.Open()
+	complexObj.StringField("name", "Bob")
+	complexObj.IntegerField("id", 123)
 
 	// Nested object
-	address := complex.ObjectField("address")
+	address := complexObj.ObjectField("address")
 	address.Open()
 	address.StringField("street", "456 Oak Ave")
 	address.StringField("city", "Boston")
@@ -89,7 +89,7 @@ func main() {
 	address.Close()
 
 	// Nested array
-	hobbies := complex.ArrayField("hobbies")
+	hobbies := complexObj.ArrayField("hobbies")
 	hobbies.Open()
 	hobbies.StringValue("reading")
 	hobbies.StringValue("swimming")
@@ -97,7 +97,7 @@ func main() {
 	hobbies.Close()
 
 	// Array of objects
-	skills := complex.ArrayField("skills")
+	skills := complexObj.ArrayField("skills")
 	skills.Open()
 
 	skill1 := skills.ObjectValue()
@@ -123,9 +123,9 @@ func main() {
 	skill2.Close()
 
 	skills.Close()
-	complex.Close()
+	complexObj.Close()
 
-	result5, err := complex.BuildBytes()
+	result5, err := complexObj.BuildBytes()
 	if err != nil {
 		log.Fatal(err)
 	}
