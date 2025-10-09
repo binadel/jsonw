@@ -2,14 +2,14 @@ package jsonw
 
 import "github.com/mailru/easyjson/jwriter"
 
-// ObjectWriter provides a low-level JSON object builder using easyjson's jwriter.Writer.
+// ObjectWriter provides a low-level JSON object builder using easyjson.
 // It supports writing fields of different types, including nested objects and arrays.
 type ObjectWriter struct {
 	writer     *jwriter.Writer
 	needsComma bool
 }
 
-// NewObjectWriter constructs a new ObjectWriter with an optional writer from its parent node.
+// NewObjectWriter creates a new ObjectWriter with an optional writer from its parent node.
 func NewObjectWriter(writer *jwriter.Writer) *ObjectWriter {
 	if writer == nil {
 		writer = &jwriter.Writer{}

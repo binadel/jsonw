@@ -4,14 +4,14 @@ import (
 	"github.com/mailru/easyjson/jwriter"
 )
 
-// ArrayWriter provides a low-level JSON array builder using easyjson's jwriter.Writer.
+// ArrayWriter provides a low-level JSON array builder using easyjson.
 // It supports appending values of different types, including nested arrays and objects.
 type ArrayWriter struct {
 	writer     *jwriter.Writer
 	needsComma bool
 }
 
-// NewArrayWriter constructs a new ArrayWriter with an optional writer from its parent node.
+// NewArrayWriter creates a new ArrayWriter with an optional writer from its parent node.
 func NewArrayWriter(writer *jwriter.Writer) *ArrayWriter {
 	if writer == nil {
 		writer = &jwriter.Writer{}
