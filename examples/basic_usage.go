@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/binadel/jsonw/pkg"
+	"github.com/binadel/jsonw"
 )
 
 func main() {

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/binadel/jsonw/pkg"
+	"github.com/binadel/jsonw"
 )
 
 func TestComplexJSONStructure(t *testing.T) {

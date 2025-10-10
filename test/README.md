@@ -1,18 +1,8 @@
 # Testing
 
-## Run Unit Tests
-```bash
-go test ./pkg -v
-```
-
-## Run Integration Tests
-```bash
-go test ./test -v
-```
-
 ## Run All Tests
 ```bash
-go test ./...
+go test -v ./...
 ```
 
 ## Run Benchmarks
