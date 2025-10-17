@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/binadel/jsonw"
+	"github.com/binadel/jsonw/jsoni"
 )
 
 func main() {
 	// Example 1: Simple object
 	fmt.Println("=== Simple Object ===")
-	obj := jsonw.NewObjectWriter(nil)
+	obj := jsoni.NewObjectWriter(nil)
 	obj.Open()
 	obj.StringField("name", "John Doe")
 	obj.IntegerField("age", 30)
@@ -26,7 +26,7 @@ func main() {
 
 	// Example 2: Using AnyField for convenience
 	fmt.Println("=== Using AnyField ===")
-	obj2 := jsonw.NewObjectWriter(nil)
+	obj2 := jsoni.NewObjectWriter(nil)
 	obj2.Open()
 	obj2.AnyField("name", "Alice")
 	obj2.AnyField("age", 25)
@@ -42,7 +42,7 @@ func main() {
 
 	// Example 3: Simple array
 	fmt.Println("=== Simple Array ===")
-	arr := jsonw.NewArrayWriter(nil)
+	arr := jsoni.NewArrayWriter(nil)
 	arr.Open()
 	arr.StringValue("apple")
 	arr.StringValue("banana")
@@ -57,7 +57,7 @@ func main() {
 
 	// Example 4: Using AnyValue for convenience
 	fmt.Println("=== Using AnyValue ===")
-	arr2 := jsonw.NewArrayWriter(nil)
+	arr2 := jsoni.NewArrayWriter(nil)
 	arr2.Open()
 	arr2.AnyValue("hello")
 	arr2.AnyValue(42)
@@ -74,7 +74,7 @@ func main() {
 
 	// Example 5: Nested structures
 	fmt.Println("=== Nested Structures ===")
-	complexObj := jsonw.NewObjectWriter(nil)
+	complexObj := jsoni.NewObjectWriter(nil)
 	complexObj.Open()
 	complexObj.StringField("name", "Bob")
 	complexObj.IntegerField("id", 123)
@@ -133,7 +133,7 @@ func main() {
 
 	// Example 6: API Response pattern
 	fmt.Println("=== API Response Pattern ===")
-	apiResponse := jsonw.NewObjectWriter(nil)
+	apiResponse := jsoni.NewObjectWriter(nil)
 	apiResponse.Open()
 	apiResponse.StringField("status", "success")
 	apiResponse.IntegerField("code", 200)

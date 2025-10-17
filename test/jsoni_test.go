@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/binadel/jsonw"
+	"github.com/binadel/jsonw/jsoni"
 )
 
 func TestComplexJSONStructure(t *testing.T) {
 	// Create a complex JSON structure with nested objects and arrays
-	obj := jsonw.NewObjectWriter(nil)
+	obj := jsoni.NewObjectWriter(nil)
 	obj.Open()
 
 	// Root level fields
@@ -217,7 +217,7 @@ func TestComplexJSONStructure(t *testing.T) {
 
 func TestAPIResponseStructure(t *testing.T) {
 	// Create a typical API response structure
-	obj := jsonw.NewObjectWriter(nil)
+	obj := jsoni.NewObjectWriter(nil)
 	obj.Open()
 
 	// Response metadata
@@ -330,7 +330,7 @@ func TestAPIResponseStructure(t *testing.T) {
 
 func TestConfigurationStructure(t *testing.T) {
 	// Create a configuration-like structure
-	obj := jsonw.NewObjectWriter(nil)
+	obj := jsoni.NewObjectWriter(nil)
 	obj.Open()
 
 	// Database config
@@ -515,7 +515,7 @@ func TestConfigurationStructure(t *testing.T) {
 
 func TestAnyFieldIntegration(t *testing.T) {
 	// Test AnyField with various types in a complex structure
-	obj := jsonw.NewObjectWriter(nil)
+	obj := jsoni.NewObjectWriter(nil)
 	obj.Open()
 
 	// Test AnyField with different types

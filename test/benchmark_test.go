@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/binadel/jsonw"
+	"github.com/binadel/jsonw/jsoni"
 )
 
 func BenchmarkObjectWriter_SimpleObject(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		obj := jsonw.NewObjectWriter(nil)
+		obj := jsoni.NewObjectWriter(nil)
 		obj.Open()
 		obj.StringField("name", "John")
 		obj.IntegerField("age", 30)
@@ -25,7 +25,7 @@ func BenchmarkObjectWriter_SimpleObject(b *testing.B) {
 
 func BenchmarkObjectWriter_AnyField(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		obj := jsonw.NewObjectWriter(nil)
+		obj := jsoni.NewObjectWriter(nil)
 		obj.Open()
 		obj.AnyField("name", "John")
 		obj.AnyField("age", 30)
@@ -41,7 +41,7 @@ func BenchmarkObjectWriter_AnyField(b *testing.B) {
 
 func BenchmarkObjectWriter_NestedStructure(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		obj := jsonw.NewObjectWriter(nil)
+		obj := jsoni.NewObjectWriter(nil)
 		obj.Open()
 		obj.StringField("name", "John")
 
@@ -68,7 +68,7 @@ func BenchmarkObjectWriter_NestedStructure(b *testing.B) {
 
 func BenchmarkArrayWriter_SimpleArray(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		arr := jsonw.NewArrayWriter(nil)
+		arr := jsoni.NewArrayWriter(nil)
 		arr.Open()
 		arr.StringValue("apple")
 		arr.StringValue("banana")
@@ -84,7 +84,7 @@ func BenchmarkArrayWriter_SimpleArray(b *testing.B) {
 
 func BenchmarkArrayWriter_MixedTypes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		arr := jsonw.NewArrayWriter(nil)
+		arr := jsoni.NewArrayWriter(nil)
 		arr.Open()
 		arr.StringValue("hello")
 		arr.IntegerValue(42)
@@ -102,7 +102,7 @@ func BenchmarkArrayWriter_MixedTypes(b *testing.B) {
 
 func BenchmarkArrayWriter_AnyValue(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		arr := jsonw.NewArrayWriter(nil)
+		arr := jsoni.NewArrayWriter(nil)
 		arr.Open()
 		arr.AnyValue("hello")
 		arr.AnyValue(42)
@@ -120,7 +120,7 @@ func BenchmarkArrayWriter_AnyValue(b *testing.B) {
 
 func BenchmarkObjectWriter_LargeObject(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		obj := jsonw.NewObjectWriter(nil)
+		obj := jsoni.NewObjectWriter(nil)
 		obj.Open()
 
 		// Add many fields
@@ -141,7 +141,7 @@ func BenchmarkObjectWriter_LargeObject(b *testing.B) {
 
 func BenchmarkArrayWriter_LargeArray(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		arr := jsonw.NewArrayWriter(nil)
+		arr := jsoni.NewArrayWriter(nil)
 		arr.Open()
 
 		// Add many values
@@ -160,7 +160,7 @@ func BenchmarkArrayWriter_LargeArray(b *testing.B) {
 
 func BenchmarkObjectWriter_DeepNesting(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		obj := jsonw.NewObjectWriter(nil)
+		obj := jsoni.NewObjectWriter(nil)
 		obj.Open()
 
 		// Create 5 levels of nesting
@@ -209,7 +209,7 @@ func BenchmarkStandardJSON_Marshal(b *testing.B) {
 func BenchmarkJSONW_vs_Standard(b *testing.B) {
 	b.Run("jsonw", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
-			obj := jsonw.NewObjectWriter(nil)
+			obj := jsoni.NewObjectWriter(nil)
 			obj.Open()
 			obj.StringField("name", "John")
 			obj.IntegerField("age", 30)

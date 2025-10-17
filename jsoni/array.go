@@ -1,4 +1,4 @@
-package jsonw
+package jsoni
 
 import "github.com/mailru/easyjson/jwriter"
 

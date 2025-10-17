@@ -1,4 +1,4 @@
-package jsonw
+package jsoni
 
 var (
 	openBrace      = byte('{')

@@ -1,4 +1,4 @@
-package jsonw
+package jsoni
 
 import (
 	"encoding/json"
