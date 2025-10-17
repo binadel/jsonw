@@ -21,7 +21,7 @@ func main() {
 		jsond.Any("dynamite", "explodes"),
 	)
 
-	if out, err := obj.Write(); err != nil {
+	if out, err := obj.Build(); err != nil {
 		fmt.Println(err)
 	} else {
 		fmt.Println(string(out))

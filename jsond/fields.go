@@ -7,18 +7,16 @@ type objectField struct {
 	fields []Field
 }
 
+// Object represents an object field of type object.
 func Object(name string, fields ...Field) Field {
-	return objectField{
-		name:   name,
-		fields: fields,
-	}
+	return objectField{name, fields}
 }
 
-func (f objectField) Write(writer *jsoni.ObjectWriter) {
+func (f objectField) write(writer *jsoni.ObjectWriter) {
 	obj := writer.ObjectField(f.name)
 	obj.Open()
 	for _, field := range f.fields {
-		field.Write(obj)
+		field.write(obj)
 	}
 	obj.Close()
 }
@@ -28,18 +26,16 @@ type arrayField struct {
 	values []Value
 }
 
+// Array represents an object field of type array.
 func Array(name string, values ...Value) Field {
-	return arrayField{
-		name:   name,
-		values: values,
-	}
+	return arrayField{name, values}
 }
 
-func (f arrayField) Write(writer *jsoni.ObjectWriter) {
+func (f arrayField) write(writer *jsoni.ObjectWriter) {
 	arr := writer.ArrayField(f.name)
 	arr.Open()
 	for _, value := range f.values {
-		value.Write(arr)
+		value.write(arr)
 	}
 	arr.Close()
 }
@@ -48,11 +44,12 @@ type stringField struct {
 	name, value string
 }
 
+// String represents an object field of type string.
 func String(name, value string) Field {
 	return stringField{name, value}
 }
 
-func (f stringField) Write(writer *jsoni.ObjectWriter) {
+func (f stringField) write(writer *jsoni.ObjectWriter) {
 	writer.StringField(f.name, f.value)
 }
 
@@ -60,11 +57,12 @@ type numberField struct {
 	name, value string
 }
 
+// String represents an object field of type string.
 func Number(name, value string) Field {
 	return numberField{name, value}
 }
 
-func (f numberField) Write(writer *jsoni.ObjectWriter) {
+func (f numberField) write(writer *jsoni.ObjectWriter) {
 	writer.NumberField(f.name, f.value)
 }
 
@@ -73,11 +71,12 @@ type integerField struct {
 	value int64
 }
 
+// Integer represents an object field of type integer.
 func Integer(name string, value int64) Field {
 	return integerField{name, value}
 }
 
-func (f integerField) Write(writer *jsoni.ObjectWriter) {
+func (f integerField) write(writer *jsoni.ObjectWriter) {
 	writer.IntegerField(f.name, f.value)
 }
 
@@ -86,11 +85,12 @@ type floatField struct {
 	value float64
 }
 
+// Float represents an object field of type float.
 func Float(name string, value float64) Field {
 	return floatField{name, value}
 }
 
-func (f floatField) Write(writer *jsoni.ObjectWriter) {
+func (f floatField) write(writer *jsoni.ObjectWriter) {
 	writer.FloatField(f.name, f.value)
 }
 
@@ -99,11 +99,12 @@ type booleanField struct {
 	value bool
 }
 
+// Boolean represents an object field of type boolean.
 func Boolean(name string, value bool) Field {
 	return booleanField{name, value}
 }
 
-func (f booleanField) Write(writer *jsoni.ObjectWriter) {
+func (f booleanField) write(writer *jsoni.ObjectWriter) {
 	writer.BooleanField(f.name, f.value)
 }
 
@@ -111,11 +112,12 @@ type nullField struct {
 	name string
 }
 
+// Null represents an object field of type null.
 func Null(name string) Field {
 	return nullField{name}
 }
 
-func (f nullField) Write(writer *jsoni.ObjectWriter) {
+func (f nullField) write(writer *jsoni.ObjectWriter) {
 	writer.NullField(f.name)
 }
 
@@ -124,10 +126,11 @@ type anyField struct {
 	value any
 }
 
+// Any represents an object field of type any.
 func Any(name string, value any) Field {
 	return anyField{name, value}
 }
 
-func (f anyField) Write(writer *jsoni.ObjectWriter) {
+func (f anyField) write(writer *jsoni.ObjectWriter) {
 	writer.AnyField(f.name, f.value)
 }
