@@ -1,4 +1,4 @@
-package jsond
+package jsondi
 
 import "github.com/binadel/jsonw/jsoni"
 
@@ -7,7 +7,7 @@ type objectField struct {
 	fields []Field
 }
 
-// Object represents an object field of type object.
+// Object creates a nested object field.
 func Object(name string, fields ...Field) Field {
 	return objectField{name, fields}
 }
@@ -26,7 +26,7 @@ type arrayField struct {
 	values []Value
 }
 
-// Array represents an object field of type array.
+// Array creates a nested array field.
 func Array(name string, values ...Value) Field {
 	return arrayField{name, values}
 }
@@ -44,7 +44,7 @@ type stringField struct {
 	name, value string
 }
 
-// String represents an object field of type string.
+// String creates a string field.
 func String(name, value string) Field {
 	return stringField{name, value}
 }
@@ -57,7 +57,7 @@ type numberField struct {
 	name, value string
 }
 
-// String represents an object field of type string.
+// Number creates a number field.
 func Number(name, value string) Field {
 	return numberField{name, value}
 }
@@ -71,7 +71,7 @@ type integerField struct {
 	value int64
 }
 
-// Integer represents an object field of type integer.
+// Integer creates an integer field.
 func Integer(name string, value int64) Field {
 	return integerField{name, value}
 }
@@ -85,7 +85,7 @@ type floatField struct {
 	value float64
 }
 
-// Float represents an object field of type float.
+// Float creates a float field.
 func Float(name string, value float64) Field {
 	return floatField{name, value}
 }
@@ -99,7 +99,7 @@ type booleanField struct {
 	value bool
 }
 
-// Boolean represents an object field of type boolean.
+// Boolean creates a boolean field.
 func Boolean(name string, value bool) Field {
 	return booleanField{name, value}
 }
@@ -112,7 +112,7 @@ type nullField struct {
 	name string
 }
 
-// Null represents an object field of type null.
+// Null creates a null field.
 func Null(name string) Field {
 	return nullField{name}
 }
@@ -126,7 +126,7 @@ type anyField struct {
 	value any
 }
 
-// Any represents an object field of type any.
+// Any creates a dynamic field. Do not use it.
 func Any(name string, value any) Field {
 	return anyField{name, value}
 }

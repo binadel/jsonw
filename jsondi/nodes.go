@@ -1,4 +1,4 @@
-package jsond
+package jsondi
 
 import "github.com/binadel/jsonw/jsoni"
 

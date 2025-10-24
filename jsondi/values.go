@@ -1,4 +1,4 @@
-package jsond
+package jsondi
 
 import "github.com/binadel/jsonw/jsoni"
 
@@ -6,7 +6,7 @@ type objectValue struct {
 	fields []Field
 }
 
-// ObjectItem represents an array item of type object.
+// ObjectItem creates a nested object value.
 func ObjectItem(fields ...Field) Value {
 	return objectValue{fields}
 }
@@ -24,7 +24,7 @@ type arrayValue struct {
 	values []Value
 }
 
-// ArrayItem represents an array item of type array.
+// ArrayItem creates a nested array value.
 func ArrayItem(values ...Value) Value {
 	return arrayValue{values}
 }
@@ -42,7 +42,7 @@ type stringValue struct {
 	value string
 }
 
-// StringItem represents an array item of type string.
+// StringItem creates a string value.
 func StringItem(value string) Value {
 	return stringValue{value}
 }
@@ -55,7 +55,7 @@ type numberValue struct {
 	value string
 }
 
-// NumberItem represents an array item of type number.
+// NumberItem creates a number value.
 func NumberItem(value string) Value {
 	return numberValue{value}
 }
@@ -68,7 +68,7 @@ type integerValue struct {
 	value int64
 }
 
-// IntegerItem represents an array item of type integer.
+// IntegerItem creates an integer value.
 func IntegerItem(value int64) Value {
 	return integerValue{value}
 }
@@ -81,7 +81,7 @@ type floatValue struct {
 	value float64
 }
 
-// FloatItem represents an array item of type float.
+// FloatItem creates a float value.
 func FloatItem(value float64) Value {
 	return floatValue{value}
 }
@@ -94,7 +94,7 @@ type booleanValue struct {
 	value bool
 }
 
-// BooleanItem represents an array item of type boolean.
+// BooleanItem creates a boolean value.
 func BooleanItem(value bool) Value {
 	return booleanValue{value}
 }
@@ -105,7 +105,7 @@ func (v booleanValue) write(writer *jsoni.ArrayWriter) {
 
 type nullValue struct{}
 
-// NullItem represents an array item of type null.
+// NullItem creates a null value.
 func NullItem() Value {
 	return nullValue{}
 }
@@ -118,7 +118,7 @@ type anyValue struct {
 	value any
 }
 
-// AnyItem represents an array item of type any.
+// AnyItem creates a dynamic value. Do not use it.
 func AnyItem(value any) Value {
 	return anyValue{value}
 }
