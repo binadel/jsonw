@@ -19,7 +19,7 @@ func (r RootObject) Build() ([]byte, error) {
 	ow := jsoni.NewObjectWriter(&jw)
 	ow.Open()
 	for _, f := range r {
-		writeField(ow, &f)
+		writeField(&ow, &f)
 	}
 	ow.Close()
 	return ow.BuildBytes()
@@ -39,7 +39,7 @@ func (r RootArray) Build() ([]byte, error) {
 	aw := jsoni.NewArrayWriter(&jw)
 	aw.Open()
 	for _, v := range r {
-		writeValue(aw, &v)
+		writeValue(&aw, &v)
 	}
 	aw.Close()
 	return aw.BuildBytes()
@@ -51,14 +51,14 @@ func writeField(w *jsoni.ObjectWriter, f *Field) {
 		obj := w.ObjectField(f.name)
 		obj.Open()
 		for i := range f.fields {
-			writeField(obj, &f.fields[i])
+			writeField(&obj, &f.fields[i])
 		}
 		obj.Close()
 	case kindArray:
 		arr := w.ArrayField(f.name)
 		arr.Open()
 		for i := range f.values {
-			writeValue(arr, &f.values[i])
+			writeValue(&arr, &f.values[i])
 		}
 		arr.Close()
 	case kindString:
@@ -86,14 +86,14 @@ func writeValue(w *jsoni.ArrayWriter, v *Value) {
 		obj := w.ObjectValue()
 		obj.Open()
 		for i := range v.fields {
-			writeField(obj, &v.fields[i])
+			writeField(&obj, &v.fields[i])
 		}
 		obj.Close()
 	case kindArray:
 		arr := w.ArrayValue()
 		arr.Open()
 		for i := range v.values {
-			writeValue(arr, &v.values[i])
+			writeValue(&arr, &v.values[i])
 		}
 		arr.Close()
 	case kindString:

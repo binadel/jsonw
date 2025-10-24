@@ -19,7 +19,7 @@ func (r RootObject) Build() ([]byte, error) {
 	writer := jsoni.NewObjectWriter(&w)
 	writer.Open()
 	for _, field := range r {
-		field.write(writer)
+		field.write(&writer)
 	}
 	writer.Close()
 	return writer.BuildBytes()
@@ -39,7 +39,7 @@ func (r RootArray) Build() ([]byte, error) {
 	writer := jsoni.NewArrayWriter(&w)
 	writer.Open()
 	for _, value := range r {
-		value.write(writer)
+		value.write(&writer)
 	}
 	writer.Close()
 	return writer.BuildBytes()

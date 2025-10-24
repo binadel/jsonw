@@ -10,12 +10,12 @@ type ObjectWriter struct {
 }
 
 // NewObjectWriter creates a new ObjectWriter given an optional writer from its parent node.
-func NewObjectWriter(writer *jwriter.Writer) *ObjectWriter {
+func NewObjectWriter(writer *jwriter.Writer) ObjectWriter {
 	if writer == nil {
 		writer = &jwriter.Writer{}
 	}
 
-	return &ObjectWriter{
+	return ObjectWriter{
 		writer:     writer,
 		needsComma: false,
 	}
@@ -29,7 +29,7 @@ func (w *ObjectWriter) Open() {
 }
 
 // ObjectField adds a nested object field and returns its writer for further modifications.
-func (w *ObjectWriter) ObjectField(name string) *ObjectWriter {
+func (w *ObjectWriter) ObjectField(name string) ObjectWriter {
 	if w.needsComma {
 		w.writer.RawByte(comma)
 	}
@@ -44,7 +44,7 @@ func (w *ObjectWriter) ObjectField(name string) *ObjectWriter {
 }
 
 // ArrayField adds a nested array field and returns its writer for further modifications.
-func (w *ObjectWriter) ArrayField(name string) *ArrayWriter {
+func (w *ObjectWriter) ArrayField(name string) ArrayWriter {
 	if w.needsComma {
 		w.writer.RawByte(comma)
 	}

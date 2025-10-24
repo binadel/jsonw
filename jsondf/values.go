@@ -8,7 +8,7 @@ func ObjectItem(fields ...Field) Value {
 		obj := w.ObjectValue()
 		obj.Open()
 		for _, field := range fields {
-			field(obj)
+			field(&obj)
 		}
 		obj.Close()
 	}
@@ -20,7 +20,7 @@ func ArrayItem(values ...Value) Value {
 		arr := w.ArrayValue()
 		arr.Open()
 		for _, value := range values {
-			value(arr)
+			value(&arr)
 		}
 		arr.Close()
 	}

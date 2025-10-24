@@ -58,11 +58,12 @@ func writePostsJsoni(posts []Post) []byte {
 		obj.IntegerField("user_id", p.UserID)
 		obj.StringField("title", p.Title)
 		obj.StringField("content", p.Content)
-		obj.ArrayField("tags").Open()
+		tags := obj.ArrayField("tags")
+		tags.Open()
 		for _, t := range p.Tags {
 			writer.StringValue(t)
 		}
-		writer.Close()
+		tags.Close()
 		obj.IntegerField("likes", int64(p.Likes))
 
 		comments := obj.ArrayField("comments")

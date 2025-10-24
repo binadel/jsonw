@@ -8,7 +8,7 @@ func Object(name string, fields ...Field) Field {
 		obj := writer.ObjectField(name)
 		obj.Open()
 		for _, field := range fields {
-			field(obj)
+			field(&obj)
 		}
 		obj.Close()
 	}
@@ -20,7 +20,7 @@ func Array(name string, values ...Value) Field {
 		arr := writer.ArrayField(name)
 		arr.Open()
 		for _, value := range values {
-			value(arr)
+			value(&arr)
 		}
 		arr.Close()
 	}

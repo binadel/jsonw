@@ -25,9 +25,6 @@ func TestObjectWriter_NewObjectWriter(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			obj := NewObjectWriter(tt.writer)
-			if obj == nil {
-				t.Fatal("NewObjectWriter returned nil")
-			}
 			if obj.writer == nil {
 				t.Fatal("ObjectWriter.writer is nil")
 			}

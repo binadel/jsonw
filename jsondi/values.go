@@ -15,7 +15,7 @@ func (v objectValue) write(writer *jsoni.ArrayWriter) {
 	obj := writer.ObjectValue()
 	obj.Open()
 	for _, field := range v.fields {
-		field.write(obj)
+		field.write(&obj)
 	}
 	obj.Close()
 }
@@ -33,7 +33,7 @@ func (v arrayValue) write(writer *jsoni.ArrayWriter) {
 	arr := writer.ArrayValue()
 	arr.Open()
 	for _, value := range v.values {
-		value.write(arr)
+		value.write(&arr)
 	}
 	arr.Close()
 }

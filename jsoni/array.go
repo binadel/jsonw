@@ -10,12 +10,12 @@ type ArrayWriter struct {
 }
 
 // NewArrayWriter creates a new ArrayWriter given an optional writer from its parent node.
-func NewArrayWriter(writer *jwriter.Writer) *ArrayWriter {
+func NewArrayWriter(writer *jwriter.Writer) ArrayWriter {
 	if writer == nil {
 		writer = &jwriter.Writer{}
 	}
 
-	return &ArrayWriter{
+	return ArrayWriter{
 		writer:     writer,
 		needsComma: false,
 	}
@@ -29,7 +29,7 @@ func (w *ArrayWriter) Open() {
 }
 
 // ObjectValue appends a new object to the array and returns its writer for further modifications.
-func (w *ArrayWriter) ObjectValue() *ObjectWriter {
+func (w *ArrayWriter) ObjectValue() ObjectWriter {
 	if w.needsComma {
 		w.writer.RawByte(comma)
 	}
@@ -40,7 +40,7 @@ func (w *ArrayWriter) ObjectValue() *ObjectWriter {
 }
 
 // ArrayValue appends a new nested array and returns its writer for further modifications.
-func (w *ArrayWriter) ArrayValue() *ArrayWriter {
+func (w *ArrayWriter) ArrayValue() ArrayWriter {
 	if w.needsComma {
 		w.writer.RawByte(comma)
 	}

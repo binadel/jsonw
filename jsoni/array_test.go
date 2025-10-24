@@ -25,9 +25,6 @@ func TestArrayWriter_NewArrayWriter(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			arr := NewArrayWriter(tt.writer)
-			if arr == nil {
-				t.Fatal("NewArrayWriter returned nil")
-			}
 			if arr.writer == nil {
 				t.Fatal("ArrayWriter.writer is nil")
 			}
