@@ -49,7 +49,6 @@ func generatePosts(users []User, postsPerUser int) []Post {
 				Tags:    []string{"go", "json", "benchmark"},
 				Likes:   rand.Intn(1000),
 			}
-			// Generate comments
 			numComments := rand.Intn(5)
 			for k := 0; k < numComments; k++ {
 				comment := Comment{
