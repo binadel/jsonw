@@ -3,22 +3,34 @@ package main
 import (
 	"fmt"
 
-	"github.com/binadel/jsonw/jsond"
+	json "github.com/binadel/jsonw/jsondf" // or jsondi, or jsonds
 )
 
 func main() {
-	obj := jsond.New(
-		jsond.String("foo", "bar"),
-		jsond.Object("nested",
-			jsond.Number("big", "23565849841318736124854886"),
-			jsond.Integer("weight", 25),
+	obj := json.New(
+		json.String("foo", "bar"),
+		json.Integer("cold", -273),
+		json.Object("nested",
+			json.Number("big", "23565849841318736104"),
+			json.Boolean("flag", true),
+			json.Array("items",
+				json.IntegerItem(732),
+				json.StringItem("is bigger than"),
+				json.FloatItem(73.2),
+				json.ArrayItem(
+					json.AnyItem(map[string]string{"deeply": "hidden"}),
+				),
+			),
 		),
-		jsond.Array("price",
-			jsond.FloatItem(25.97),
-			jsond.NullItem(),
-			jsond.BooleanItem(true),
+		json.Float("pi", 3.1415),
+		json.Array("same",
+			json.BooleanItem(false),
+			json.NullItem(),
+			json.ObjectItem(),
+			json.NumberItem("0.0"),
 		),
-		jsond.Any("dynamite", "explodes"),
+		json.Any("dynamite", "explodes"),
+		json.Null("last"),
 	)
 
 	if out, err := obj.Build(); err != nil {
