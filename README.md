@@ -1,62 +1,90 @@
-# jsonw
+# jsonw — High Performance Manual JSON Writing for Go
 
 [![Go Version](https://img.shields.io/badge/Go-1.21+-blue.svg)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/binadel/jsonw)](https://goreportcard.com/report/github.com/binadel/jsonw)
 ![CI](https://github.com/binadel/jsonw/actions/workflows/test.yml/badge.svg)
 
-A lightweight, high-performance Go library for manually building JSON objects and arrays.
+`jsonw` is a set of high-performance JSON writing utilities for Go — focused on **zero reflection**, **low allocations**, and **maximum encoding speed**.
 
-## Features
+It provides:
+- an **imperative** writer (`jsoni`) that uses [`easyjson`](https://github.com/mailru/easyjson)'s jwriter under the hood and
+- three **declarative** variants (which expose the **same public API**) implemented in different styles:
+  - `jsonds` — declarative implementation using **structs**
+  - `jsondi` — declarative implementation using **interfaces**
+  - `jsondf` — declarative implementation using **functions**
 
-- 🚀 **High Performance**: Built on top of `easyjson` for optimal speed
-- 🎯 **Type Safety**: Strongly typed methods for different JSON value types
-- 🔧 **Manual Control**: Complete control over JSON structure building
-- 🧪 **Well Tested**: Comprehensive test suite with 100% method coverage
-- 📊 **Benchmarked**: ~4x faster than standard `json.Marshal`
+---
 
-## Installation
+## Installing
 
 ```bash
 go get github.com/binadel/jsonw
 ```
 
-## Quick Start
-
-### Basic Usage
+Import what you need:
 
 ```go
-package main
-
 import (
-    "fmt"
-    "log"
-	
-    "github.com/binadel/jsonw"
+    "github.com/binadel/jsonw/jsoni"   // imperative writer
+    "github.com/binadel/jsonw/jsondi"  // declarative (interfaces) — same API as jsondf/jsonds
+    "github.com/binadel/jsonw/jsondf"  // declarative (functions)  — same API
+    "github.com/binadel/jsonw/jsonds"  // declarative (structs)    — same API
 )
-
-func main() {
-    // Create a simple object
-    obj := jsonw.NewObjectWriter(nil)
-    obj.Open()
-    obj.StringField("name", "John Doe")
-    obj.IntegerField("age", 30)
-    obj.BooleanField("active", true)
-    obj.Close()
-
-    result, err := obj.BuildBytes()
-    if err != nil {
-        log.Fatal(err)
-    }
-    
-    fmt.Println(string(result))
-    // Output: {"name":"John Doe","age":30,"active":true}
-}
 ```
 
-## Examples
+---
 
-See `examples/basic_usage.go` for comprehensive usage examples.
+## API Overview & Examples
+
+All declarative packages (`jsondi`, `jsondf`, `jsonds`) present the same public API shape
+(so switching implementation is straightforward).
+jsoni is an imperative builder around `easyjson/jwriter`.
+
+### Imperative
+
+`jsoni` is manual: you call methods to write fields and control exact output. Because it writes directly into a jwriter, it achieves very low allocations.
+
+```go
+w := jsoni.NewObjectWriter(nil)
+w.Open()
+w.StringField("name", "John")
+w.IntegerField("age", 30)
+w.Close()
+
+out, err := w.BuildBytes()
+```
+
+### Declarative
+
+These packages (`jsonds`, `jsondi`, `jsondf`) expose the same declarative API.
+
+```go
+obj := json.New(
+    json.String("name", "John"),
+    json.Integer("age", 30),
+)
+
+
+out, err := obj.Build()
+```
+
+See `examples` directory for comprehensive usage examples.
+
+---
+
+## Comparison 
+
+| Implementation         | Speed                   | Memory             | Best Feature         |
+|------------------------|-------------------------|--------------------|----------------------|
+| `encoding/json`        | 🐢 Slowest              | ❌ High allocs      | Zero setup           |
+| `easyjson`             | ⚡ Fastest               | 🧠 Very low allocs | Code generation      |
+| `jsoni`                | ⚡ Fast                  | 🧠 Very low allocs | Fully manual control |
+| `jsondi/jsondf/jsonds` | 🚀 Faster than std json | ❌ Highest allocs   | Declarative API      |
+
+See `test` directory for benchmark results.
+
+---
 
 ## License
 
