@@ -39,7 +39,7 @@ import (
 
 All declarative packages (`jsondi`, `jsondf`, `jsonds`) present the same public API shape
 (so switching implementation is straightforward).
-jsoni is an imperative builder around `easyjson/jwriter`.
+`jsoni` is an imperative builder around `easyjson/jwriter`.
 
 ### Imperative
 
