@@ -7,8 +7,10 @@ import (
 	"github.com/mailru/easyjson/jwriter"
 )
 
-var users = generateUsers(1000)
-var posts = generatePosts(users, 5)
+var (
+	users = generateUsers(1000)
+	posts = generatePosts(users, 5)
+)
 
 // ----------------- Benchmark: encoding/json -----------------
 func BenchmarkEncodingJSON_Users(b *testing.B) {
